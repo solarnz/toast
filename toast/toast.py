@@ -18,6 +18,7 @@ class Toaster:
         return {'base': self._states}
 
     def pillars(self):
+        self.load()
         return self._pillars
 
     def load(self):

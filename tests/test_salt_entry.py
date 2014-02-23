@@ -47,28 +47,21 @@ class TestSaltEnteries(unittest.TestCase):
     def test_basic_states(self):
         fixture = self._get_test_fixture('basic_user_module.py')
         states = toast.salt_entry.top(fixture)
-        self.assertEqual(
-            states,
-            {
-                'base': ['vim']
-            }
-        )
+        self.assertEqual(states, {'base': ['vim']})
+
+        pillars = toast.salt_entry.pillar(fixture, None, None)
+        self.assertEqual(pillars, {})
 
     def test_basic_states_with_grains(self):
         fixture = self._get_test_fixture('basic_user_module_with_grains.py')
         states = toast.salt_entry.top(fixture)
-        self.assertEqual(
-            states,
-            {
-                'base': []
-            }
-        )
+        self.assertEqual(states, {'base': []})
+        pillars = toast.salt_entry.pillar(fixture, None, None)
+        self.assertEqual(pillars, {})
 
         grains = {'vim': True}
         states = toast.salt_entry.top(fixture, grains)
-        self.assertEqual(
-            states,
-            {
-                'base': ['vim']
-            }
-        )
+        self.assertEqual(states, {'base': ['vim']})
+
+        pillars = toast.salt_entry.pillar(fixture, None, None, grains)
+        self.assertEqual(pillars, {'vim': 'gvim'})

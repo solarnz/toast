@@ -10,9 +10,9 @@ def top(path, grains=None, **kwargs):
     toaster = toast.Toaster(path, grains)
     return toaster.states()
 
-def pillar(path, grains=None, **kwargs):
+def pillar(toast_path, minion_id, pillar, grains=None, **kwargs):
     """ The main entry point for the ext_pillar extension
     """
     grains = grains if grains else {}
-    toaster = toast.Toaster(path, grains)
+    toaster = toast.Toaster(toast_path, grains)
     return toaster.pillars()
