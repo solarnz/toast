@@ -1,6 +1,7 @@
 import unittest
 import os
 import os.path
+import pkgutil
 import sys
 
 import toast.salt_entry
@@ -12,6 +13,7 @@ class TestSaltEnteries(unittest.TestCase):
 
         Not to be confused with the package path returned by :func:`find_package`.
         """
+        # NOTE: This  function has been taken from the flask package.
         import_name = __name__
         # Module already imported and has a file attribute.  Use that first.
         mod = sys.modules.get(import_name)
