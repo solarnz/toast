@@ -40,9 +40,17 @@ class TestSaltEnteries(unittest.TestCase):
         return os.path.dirname(os.path.abspath(filepath))
 
     def _get_test_fixture(self, fixture_name):
-        return os.path.join(
+        path = os.path.join(
             self.get_root_path(), 'fixtures', fixture_name
         )
+
+        return {
+            'master_tops': {
+                'toast': {
+                    'path': path
+                }
+            }
+        }
 
     def test_basic_states(self):
         fixture = self._get_test_fixture('basic_user_module.py')
